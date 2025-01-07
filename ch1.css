@@ -1,9 +1,9 @@
-*{
+/* CSS Général */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'kumbh Sans', sans-serif;
-    font-size: 18px;
+    font-family: 'Kumbh Sans', sans-serif;
 }
 
 body {
@@ -13,103 +13,139 @@ body {
     justify-content: center;
     align-items: center;
     background-color: hsl(185, 75%, 39%);
-    
-
+    overflow: hidden; /* Masquer les débordements */
+    position: relative;
 }
 
 .container {
+    width: 90%;
+    max-width: 350px;
     background-color: #fff;
     border-radius: 20px;
+    overflow: hidden;
 }
 
 .cover-image img {
-    border-radius: 20px 20px 0px 0px ;
     width: 100%;
     display: block;
 }
 
-.user-container{
+.user-container {
     text-align: center;
+    padding: 20px 0;
 }
 
 .profile-icon {
     border-radius: 50%;
-    width: 96px;
-    height: 96px;
-    margin-top: -40px; /* Ajustez cette valeur si nécessaire */
+    width: 80px;
+    height: 80px;
+    margin-top: -40px;
     border: 4px solid #fff;
 }
 
 .user-container h2 {
     font-weight: 700;
-    margin-top: 10px; /* Réduire l'espace au-dessus du texte */
+    margin: 10px 0;
     font-size: 1.2rem;
 }
 
 .user-container h5 {
     font-size: 0.9rem;
-    margin-top: 3px; /* Réduire encore plus l'espace */
+    margin-top: 3px;
     color: hsl(0, 0%, 80%);
 }
 
-.rating-container{
+.rating-container {
     border-top: 2px solid #f1f1f1;
-    padding: 16px 32px;
+    padding: 16px;
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.text-color-grey{
-    color: hsl(0,0%, 59%);
-    font-weight: 400;
-}
-
-.rating-container  {
+    justify-content: space-around;
     text-align: center;
-    margin-top: 20px;
+}
+
+.rating-container div {
+    flex: 1;
+}
+
+.rating-container h3 {
+    margin-bottom: 5px;
+    font-size: 1rem;
 }
 
 .rating-container p {
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-body {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: hsl(185, 75%, 39%);
-    position: relative; /* Nécessaire pour positionner les demi-sphères */
-    overflow: hidden; /* Masque tout ce qui dépasse de la fenêtre */
+    font-size: 0.8rem;
+    color: hsl(0, 0%, 59%);
 }
 
 body::before,
 body::after {
     content: "";
     position: absolute;
-    background-color: hsl(185, 62%, 45%); /* Couleur légèrement différente du fond */
+    width: 50vw; /* Largeur du cercle */
+    height: 50vw; /* Hauteur identique à la largeur */
+    background: radial-gradient(
+        circle,
+        hsla(185, 62%, 45%, 0.8) 0%, /* Couleur centrale */
+        hsla(185, 62%, 45%, 0.5) 50%, /* Transition douce */
+        hsla(185, 62%, 45%, 0) 100% /* Bord totalement transparent */
+    );
     border-radius: 50%; /* Forme circulaire */
     z-index: -1; /* Derrière le contenu principal */
+    animation: lightenEffect 5s infinite alternate; /* Animation d'éclaircissement */
 }
 
-/* Demi-sphère en haut à gauche */
+/* Cercle en haut à gauche */
 body::before {
-    width: 100vw; /* Largeur de la demi-sphère = largeur de l'écran */
-    height: 100vh; /* Hauteur de la demi-sphère = hauteur de l'écran */
-    top: -50vh; /* Positionnée en haut, à moitié hors écran */
-    left: -50vw; /* Positionnée à gauche, à moitié hors écran */
+    top: 10%;
+    left: 10%;
+    transform: translate(-50%, -50%);
 }
 
-/* Demi-sphère en bas à droite */
+/* Cercle en bas à droite */
 body::after {
-    width: 100vw; /* Largeur de la demi-sphère = largeur de l'écran */
-    height: 100vh; /* Hauteur de la demi-sphère = hauteur de l'écran */
-    bottom: -50vh; /* Positionnée en bas, à moitié hors écran */
-    right: -50vw; /* Positionnée à droite, à moitié hors écran */
+    bottom: 10%;
+    right: 10%;
+    transform: translate(50%, 50%);
+}
+
+/* Animation d'éclaircissement */
+@keyframes lightenEffect {
+    0% {
+        opacity: 0.8; /* Cercle initial légèrement visible */
+    }
+    50% {
+        opacity: 1; /* Cercle complètement visible */
+    }
+    100% {
+        opacity: 0.5; /* Cercle estompé */
+    }
 }
 
 
 
+
+/* Media Queries pour les petits écrans */
+@media (max-width: 480px) {
+    body {
+        background-color: hsl(185, 62%, 45%);
+    }
+
+    .container {
+        max-width: 320px;
+        width: 100%;
+    }
+
+    .profile-icon {
+        width: 72px;
+        height: 72px;
+        margin-top: -36px;
+    }
+
+    .rating-container h3 {
+        font-size: 0.9rem;
+    }
+
+    .rating-container p {
+        font-size: 0.7rem;
+    }
+}
